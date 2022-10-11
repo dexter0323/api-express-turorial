@@ -25,3 +25,9 @@ export const v1 = Router()
       .then((t) => res.json(t))
       .catch(next)
   })
+  .delete("/task/:id", (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params
+    Task.delete(id)
+      .then(() => res.json())
+      .catch(next)
+  })

@@ -23,5 +23,11 @@ export const v1 = Router()
     Task.update({ id, name, createdBy })
         .then((t) => res.json(t))
         .catch(next);
+})
+    .delete("/task/:id", (req, res, next) => {
+    const { id } = req.params;
+    Task.delete(id)
+        .then(() => res.json())
+        .catch(next);
 });
 //# sourceMappingURL=v1.js.map

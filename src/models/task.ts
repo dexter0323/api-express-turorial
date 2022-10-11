@@ -1,7 +1,8 @@
+import { Model } from "mongoose"
 import Mongo from "../database/mongo.js"
 
 export class TaskModel {
-  static model: any
+  static model: Model<any>
   constructor() {
     if (!TaskModel.model) {
       TaskModel.model = Mongo.db.TASK_MANAGER.model(
@@ -48,7 +49,7 @@ export class TaskModel {
       return Promise.reject(error)
     }
   }
-  public async getById(id: any): Promise<any> {
+  public async getById(id: string): Promise<any> {
     try {
       const result: any = await TaskModel.model.findById(id)
       return Promise.resolve({
@@ -61,7 +62,7 @@ export class TaskModel {
       return Promise.reject(error)
     }
   }
-  public async getAll(): Promise<any> {
+  public async getAll(): Promise<[]> {
     try {
       const result: any = await TaskModel.model.find()
       return Promise.resolve(
@@ -69,6 +70,15 @@ export class TaskModel {
           return { id: t.id, name: t.name, createdBy: t.createdBy }
         })
       )
+    } catch (error) {
+      if (process.env.VERBOSE === "true") console.error(error)
+      return Promise.reject(error)
+    }
+  }
+  public async delete(id: string): Promise<void> {
+    try {
+      const result: any = await TaskModel.model.findByIdAndDelete(id)
+      return Promise.resolve()
     } catch (error) {
       if (process.env.VERBOSE === "true") console.error(error)
       return Promise.reject(error)

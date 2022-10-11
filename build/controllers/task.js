@@ -12,5 +12,8 @@ export default class Task {
     static async getAll() {
         return new TaskModel().getAll();
     }
+    static async delete(id) {
+        return new TaskModel().delete(id);
+    }
 }
 //# sourceMappingURL=task.js.map

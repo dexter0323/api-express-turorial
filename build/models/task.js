@@ -72,5 +72,16 @@ export class TaskModel {
             return Promise.reject(error);
         }
     }
+    async delete(id) {
+        try {
+            const result = await TaskModel.model.findByIdAndDelete(id);
+            return Promise.resolve();
+        }
+        catch (error) {
+            if (process.env.VERBOSE === "true")
+                console.error(error);
+            return Promise.reject(error);
+        }
+    }
 }
 //# sourceMappingURL=task.js.map
