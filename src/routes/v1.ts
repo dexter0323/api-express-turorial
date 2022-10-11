@@ -2,21 +2,26 @@ import { Router, Request, Response, NextFunction } from "express"
 import Task from "../database/controllers/task.js"
 
 export const v1 = Router()
-  .get("/task", (req: Request, res: Response) => {
-    res.json({ hello: "world" })
+  .get("/tasks", (req: Request, res: Response, next: NextFunction) => {
+    Task.getAll()
+      .then((t) => res.json(t))
+      .catch(next)
   })
-  .get("/task/:id", (req: Request, res: Response) => {
-    res.json({ hello: "world" })
+  .get("/task/:id", (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params
+    Task.getById(id)
+      .then((t) => res.json(t))
+      .catch(next)
   })
   .post("/task", async (req: Request, res: Response, next: NextFunction) => {
     const { name, createdBy } = req.body
     Task.create({ name, createdBy })
-      .then((task) => res.json(task))
-      .catch((err) => next(err))
+      .then((t) => res.json(t))
+      .catch(next)
   })
   .put("/task", (req: Request, res: Response, next: NextFunction) => {
     const { id, name, createdBy } = req.body
     Task.update({ id, name, createdBy })
-      .then((task) => res.json(task))
-      .catch((err) => next(err))
+      .then((t) => res.json(t))
+      .catch(next)
   })
