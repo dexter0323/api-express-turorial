@@ -1,4 +1,4 @@
-import Mongo from "../mongo.js"
+import Mongo from "../database/mongo.js"
 
 export class TaskModel {
   static model: any

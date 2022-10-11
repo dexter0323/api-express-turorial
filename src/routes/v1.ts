@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from "express"
-import Task from "../database/controllers/task.js"
+import Task from "../controllers/task.js"
 
 export const v1 = Router()
   .get("/tasks", (req: Request, res: Response, next: NextFunction) => {
