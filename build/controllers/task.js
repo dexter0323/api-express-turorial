@@ -1,19 +1,19 @@
 import { TaskModel } from "../models/task.js";
 export default class Task {
     static async create(data) {
-        return new TaskModel().create(data);
+        return TaskModel.getInstance().create(data);
     }
     static async update(data) {
-        return new TaskModel().update(data);
+        return TaskModel.getInstance().update(data);
     }
     static async getById(id) {
-        return new TaskModel().getById(id);
+        return TaskModel.getInstance().getById(id);
     }
     static async getAll() {
-        return new TaskModel().getAll();
+        return TaskModel.getInstance().getAll();
     }
     static async delete(id) {
-        return new TaskModel().delete(id);
+        return TaskModel.getInstance().delete(id);
     }
 }
 //# sourceMappingURL=task.js.map

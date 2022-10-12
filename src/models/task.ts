@@ -42,11 +42,13 @@ export class TaskModel {
       const result: any = await this.model.findByIdAndUpdate(data.id, data, {
         new: true,
       })
-      return Promise.resolve({
-        id: result.id,
-        name: result.name,
-        createdBy: result.createdBy,
-      })
+      return result
+        ? Promise.resolve({
+            id: result.id,
+            name: result.name,
+            createdBy: result.createdBy,
+          })
+        : Promise.resolve({ message: "Record not exists." })
     } catch (error) {
       if (process.env.VERBOSE === "true") console.error(error)
       return Promise.reject(error)
@@ -56,11 +58,13 @@ export class TaskModel {
   public async getById(id: string): Promise<any> {
     try {
       const result: any = await this.model.findById(id)
-      return Promise.resolve({
-        id: result.id,
-        name: result.name,
-        createdBy: result.createdBy,
-      })
+      return result
+        ? Promise.resolve({
+            id: result.id,
+            name: result.name,
+            createdBy: result.createdBy,
+          })
+        : Promise.resolve({ message: "Record not found" })
     } catch (error) {
       if (process.env.VERBOSE === "true") console.error(error)
       return Promise.reject(error)
