@@ -7,8 +7,7 @@ export const v1 = Router()
         .catch(next);
 })
     .get("/task/:id", (req, res, next) => {
-    const { id } = req.params;
-    Task.getById(id)
+    Task.getById(req.params.id)
         .then((t) => res.json(t))
         .catch(next);
 })
@@ -25,8 +24,7 @@ export const v1 = Router()
         .catch(next);
 })
     .delete("/task/:id", (req, res, next) => {
-    const { id } = req.params;
-    Task.delete(id)
+    Task.delete(req.params.id)
         .then(() => res.json())
         .catch(next);
 });
