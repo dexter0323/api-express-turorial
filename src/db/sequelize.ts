@@ -27,13 +27,4 @@ export default class SequelizeManager {
   public static setModels() {
     TaskModel.setModel(SequelizeManager.sequalize)
   }
-
-  public static async sync(): Promise<any> {
-    try {
-      return Promise.resolve(await Task.sync())
-    } catch (error) {
-      if (process.env.VERBOSE === "true") console.error(error)
-      return Promise.reject(error)
-    }
-  }
 }

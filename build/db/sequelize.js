@@ -28,15 +28,5 @@ export default class SequelizeManager {
     static setModels() {
         TaskModel.setModel(SequelizeManager.sequalize);
     }
-    static async sync() {
-        try {
-            return Promise.resolve(await Task.sync());
-        }
-        catch (error) {
-            if (process.env.VERBOSE === "true")
-                console.error(error);
-            return Promise.reject(error);
-        }
-    }
 }
 //# sourceMappingURL=sequelize.js.map
