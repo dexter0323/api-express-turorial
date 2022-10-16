@@ -1,13 +1,13 @@
 import { Model } from "mongoose"
-import Mongo from "../database/mongo.js"
+import Mongo from "../db/mongo.js"
 
-export class TaskModel {
-  private static instance: TaskModel
+export class TaskMongoModel {
+  private static instance: TaskMongoModel
   private model: Model<any>
 
-  public static getInstance(): TaskModel {
-    if (!TaskModel.instance) TaskModel.instance = new TaskModel()
-    return TaskModel.instance
+  public static getInstance(): TaskMongoModel {
+    if (!TaskMongoModel.instance) TaskMongoModel.instance = new TaskMongoModel()
+    return TaskMongoModel.instance
   }
 
   constructor() {

@@ -1,12 +1,14 @@
 import * as dotenv from "dotenv";
 import express from "express";
-import Mongo from "./database/mongo.js";
+import Mongo from "./db/mongo.js";
+import SequelizeManager from "./db/sequelize.js";
 import { routes } from "./routes/index.js";
 export async function init() {
     if (process.env.VERBOSE === "true")
         console.info("Starting API...");
     dotenv.config();
     const app = express();
+    await SequelizeManager.connect(process.env.PG_URI);
     for (const dbName of process.env.MONGODB_DEFAULT.split(",")) {
         await Mongo.connect(process.env.MONGODB_URI, dbName);
     }
