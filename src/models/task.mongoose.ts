@@ -1,5 +1,5 @@
-import { Model } from "mongoose"
-import Mongo from "../db/mongo.js"
+import { Model } from 'mongoose'
+import Mongo from '../db/mongo.js'
 
 export class TaskMongoModel {
   private static instance: TaskMongoModel
@@ -12,10 +12,10 @@ export class TaskMongoModel {
 
   constructor() {
     this.model = Mongo.db.TASK_MANAGER.model(
-      "task",
+      'task',
       new Mongo.db.TASK_MANAGER.Schema({
         name: { type: String, required: true },
-        status: { type: String, required: true, default: "pending" },
+        status: { type: String, required: true, default: 'pending' },
         createdBy: { type: String, required: true },
         date: { type: Date, default: Date.now },
       })
@@ -32,7 +32,7 @@ export class TaskMongoModel {
         createdBy: result.createdBy,
       })
     } catch (error) {
-      if (process.env.VERBOSE === "true") console.error(error)
+      if (process.env.VERBOSE === 'true') console.error(error)
       return Promise.reject(error)
     }
   }
@@ -48,9 +48,9 @@ export class TaskMongoModel {
             name: result.name,
             createdBy: result.createdBy,
           })
-        : Promise.resolve({ message: "Record not exists." })
+        : Promise.resolve({ message: 'Record not exists.' })
     } catch (error) {
-      if (process.env.VERBOSE === "true") console.error(error)
+      if (process.env.VERBOSE === 'true') console.error(error)
       return Promise.reject(error)
     }
   }
@@ -64,9 +64,9 @@ export class TaskMongoModel {
             name: result.name,
             createdBy: result.createdBy,
           })
-        : Promise.resolve({ message: "Record not found" })
+        : Promise.resolve({ message: 'Record not found' })
     } catch (error) {
-      if (process.env.VERBOSE === "true") console.error(error)
+      if (process.env.VERBOSE === 'true') console.error(error)
       return Promise.reject(error)
     }
   }
@@ -80,7 +80,7 @@ export class TaskMongoModel {
         })
       )
     } catch (error) {
-      if (process.env.VERBOSE === "true") console.error(error)
+      if (process.env.VERBOSE === 'true') console.error(error)
       return Promise.reject(error)
     }
   }
@@ -90,7 +90,7 @@ export class TaskMongoModel {
       const result: any = await this.model.findByIdAndDelete(id)
       return Promise.resolve()
     } catch (error) {
-      if (process.env.VERBOSE === "true") console.error(error)
+      if (process.env.VERBOSE === 'true') console.error(error)
       return Promise.reject(error)
     }
   }

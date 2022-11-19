@@ -1,2 +1,2 @@
-import {init} from "./build/index.js"
+import { init } from './build/index.js'
 init()

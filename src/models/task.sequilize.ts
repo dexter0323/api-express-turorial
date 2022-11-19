@@ -1,10 +1,10 @@
-import { DataTypes, Model, Sequelize } from "sequelize"
-import SequelizeManager from "../db/sequelize.js"
+import { DataTypes, Model, Sequelize } from 'sequelize'
+import SequelizeManager from '../db/sequelize.js'
 
 export class TaskModel extends Model {
   public static setModel(sequelize: Sequelize) {
     sequelize.define(
-      "tasks",
+      'tasks',
       {
         id: {
           type: DataTypes.INTEGER,
@@ -17,15 +17,15 @@ export class TaskModel extends Model {
           allowNull: false,
         },
         status: {
-          type: DataTypes.ENUM("pending", "complete"),
+          type: DataTypes.ENUM('pending', 'complete'),
           allowNull: false,
-          defaultValue: "pending",
+          defaultValue: 'pending',
         },
       },
       {
         timestamps: true,
-        createdAt: "created_at",
-        updatedAt: "updated_at",
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
       }
     )
   }
@@ -35,7 +35,7 @@ export class TaskModel extends Model {
         await SequelizeManager.sequalize.models.tasks.create(data)
       )
     } catch (error) {
-      if (process.env.VERBOSE === "true") console.error(error)
+      if (process.env.VERBOSE === 'true') console.error(error)
       return Promise.reject(error)
     }
   }
@@ -46,7 +46,7 @@ export class TaskModel extends Model {
         await SequelizeManager.sequalize.models.tasks.findByPk(id)
       )
     } catch (error) {
-      if (process.env.VERBOSE === "true") console.error(error)
+      if (process.env.VERBOSE === 'true') console.error(error)
       return Promise.reject(error)
     }
   }
@@ -57,7 +57,7 @@ export class TaskModel extends Model {
         await SequelizeManager.sequalize.models.tasks.findAll()
       )
     } catch (error) {
-      if (process.env.VERBOSE === "true") console.error(error)
+      if (process.env.VERBOSE === 'true') console.error(error)
       return Promise.reject(error)
     }
   }
@@ -71,7 +71,7 @@ export class TaskModel extends Model {
         await SequelizeManager.sequalize.models.tasks.findByPk(data.id)
       )
     } catch (error) {
-      if (process.env.VERBOSE === "true") console.error(error)
+      if (process.env.VERBOSE === 'true') console.error(error)
       return Promise.reject(error)
     }
   }
@@ -84,7 +84,7 @@ export class TaskModel extends Model {
         })
       )
     } catch (error) {
-      if (process.env.VERBOSE === "true") console.error(error)
+      if (process.env.VERBOSE === 'true') console.error(error)
       return Promise.reject(error)
     }
   }

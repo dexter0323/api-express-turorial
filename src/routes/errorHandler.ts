@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express"
+import { Request, Response, NextFunction } from 'express'
 
 export function errorHandler(
   err: any,
@@ -6,10 +6,10 @@ export function errorHandler(
   res: Response,
   next: NextFunction
 ) {
-  if (process.env.VERBOSE === "true") console.error(err)
+  if (process.env.VERBOSE === 'true') console.error(err)
   res.status(res.statusCode || 500).send({
     error:
-      process.env.DEVELOPMENT === "true" ? err.message : "Something failed!",
+      process.env.DEVELOPMENT === 'true' ? err.message : 'Something failed!',
   })
   next()
 }
